@@ -124,7 +124,7 @@
             }
             tbody.appendChild(tr)
             let tr2 = document.createElement("tr")
-            for (i = 1; i < day; i++) {
+            for (i = 0; i < (day + 6) % 7; i++) {
                 let td = document.createElement('td')
                 tr2.appendChild(td)
             }
