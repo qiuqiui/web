@@ -109,14 +109,14 @@
             for (i = 0; i < 31; i++) {
                 let td = document.createElement('td')
                 td.className = "td-body"
-                let btn = document.createElement('button')
+                let btn = document.createElement('p')
                 let meetingDate = afterDays(today, i)
                 btn.id = "btn-" + meetingDate.getMonth() + "-" + meetingDate.getDate()
-                let p = document.createElement('p')
+                let b = document.createElement('b')
                 let span = document.createElement('span')
-                p.textContent = meetingDate.getDate()
+                b.textContent = meetingDate.getDate()
                 span.textContent = getLunarDay(meetingDate)
-                btn.appendChild(p)
+                btn.appendChild(b)
                 btn.appendChild(span)
                 btn.onclick = function () {
                     selectDate(meetingDate)
@@ -307,13 +307,14 @@
         }
         .td-body {
             padding: 5px;
-            button {
+            p {
                 font-size: 20px;
                 padding: 10px;
                 width: 100%;
             }
-            p {
+            b {
                 margin: 5px;
+                display: block;
             }
         }
         .time-selector {
