@@ -12,52 +12,30 @@
 </HEAD>
 
 <BODY>
+    <h1 class="title">会议室预定</h1>
+    <div>
+        <table class="date-selector">
+            <tbody id="dateSelector">
+            </tbody>
+        </table>
+    </div>
     <div class="time-selector" id="timeSelector">
         <select id="startSelector" size='12'>
         </select>
         <select id="endSelector" size='12'>
         </select>
     </div>
-    <div class="date-selector">
-        <table>
-            <thead>
-                <tr>
-                    <th colspan="7">会议室预定</th>
-                </tr>
-            </thead>
-            <tbody id="dateSelector">
-            </tbody>
-        </table>
-    </div>
     <div class="div-btn">
-        <button id="halfhours">
-            0.5小时
-        </button>
-    </div>
-    <div class="div-btn">
-        <button id="onehours">
-            1小时
-        </button>
-    </div>
-    <div class="div-btn">
-        <button id="twohours">
-            2小时
-        </button>
-    </div>
-    <div class="div-btn">
-        <button id="morning">
-            上午
-        </button>
-    </div>
-    <div class="div-btn">
-        <button id="afternoon">
-            下午
-        </button>
-    </div>
-    <div class="div-btn">
-        <button id="open">
-            open
-        </button>
+        <div>
+            <button id="halfhours" class="btn"> 0.5小时 </button>
+            <button id="onehours" class="btn"> 1小时 </button>
+            <button id="twohours" class="btn"> 2小时 </button>
+        </div>
+        <div>
+            <button id="morning" class="btn"> 上午 </button>
+            <button id="afternoon" class="btn"> 下午 </button>
+        </div>
+        <button id="open" class="btn"> open </button>
     </div>
     <script src="./static/calendar.js"></script>
     <script>
@@ -134,7 +112,12 @@
                 let btn = document.createElement('button')
                 let meetingDate = afterDays(today, i)
                 btn.id = "btn-" + meetingDate.getMonth() + "-" + meetingDate.getDate()
-                btn.textContent = meetingDate.getDate() + getLunarDay(meetingDate)
+                let p = document.createElement('p')
+                let span = document.createElement('span')
+                p.textContent = meetingDate.getDate()
+                span.textContent = getLunarDay(meetingDate)
+                btn.appendChild(p)
+                btn.appendChild(span)
                 btn.onclick = function () {
                     selectDate(meetingDate)
                     clearTimeout(timeout)
@@ -308,69 +291,62 @@
         load()
     </script>
     <style>
-        button {
-            min-height: 20px;
-            min-width: 30px;
-            height: 90%;
-            width: 90%;
-            font-size: xx-large;
+        .title {
+            text-align: center;
         }
-
-        td {
-            font-size: xx-large;
-        }
-
-        th {
-            font-size: xxx-large;
-        }
-
-        option {
-            font-size: xx-large;
-        }
-
-        table {
+        .date-selector {
+            padding: 20px;
             width: 100%;
-            height: 100%;
         }
-
-        select {
-            width: 45%;
+        td {
+            text-align: center;
         }
-
+        .td-title {
+            font-size: 24px;
+            padding: 12px 0;
+        }
+        .td-body {
+            padding: 5px;
+            button {
+                font-size: 20px;
+                padding: 10px;
+                width: 100%;
+            }
+            p {
+                margin: 5px;
+            }
+        }
+        .time-selector {
+            float: left;
+            margin-left: 26px;
+        }
+        #startSelector,
+        #endSelector {
+            font-size: 20px;
+        }
+        .div-btn {
+            float: right;
+            margin-right: 26px;
+            .btn {
+                font-size: 30px;
+                margin: 10px;
+                width: 160px;
+                height: 80px;
+            }
+        }
         .selected-btn {
-            background-color: red
+            background-color: red;
+            border-color: red;
+            color: #fff;
         }
 
         .unselected-btn {
             background-color: ''
         }
-
-        .td-body {
-            height: 20%
-        }
-
-        .td-title {
-            width: 14%;
-            height: 5%;
-        }
-
-        .div-btn {
-            width: 30%;
-            height: 7%;
-            float: left;
-            padding-top: 2%
-        }
-
-        .time-selector {
-            width: 20%;
-            float: left;
-            padding-top: 2%;
-        }
-
-        .date-selector {
-            width: 70%;
-            height: 80%;
-            display: flex
+        @media screen and (max-width: 850px) {
+            body {
+                background-color: blue;
+            }
         }
     </style>
 </BODY>
